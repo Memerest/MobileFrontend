@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/feedFragment"
+        android:enabled="true"
+        android:icon="@drawable/sl_feed"
+        android:title="@string/feed_icon_text"/>
+    <item
+        android:id="@+id/collectionsFragment"
+        android:enabled="true"
+        android:icon="@drawable/sl_collections"
+        android:title="@string/collection_icon_text"/>
+
+    <item
+        android:id="@+id/weeklyFragment"
+        android:enabled="true"
+        android:icon="@drawable/sl_weekly"
+        android:title="@string/weekly_feed_icon_text"/>
+
+    <item
+        android:id="@+id/uploadFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_upload"
+        android:title="@string/upload_icon_text"/>
+</menu>
