@@ -19,7 +19,11 @@ class FeedViewModel @Inject constructor(private val repository: FeedRepository) 
 
     fun pressLike(item: MemeListUiModel) {
         viewModelScope.launch {
-            repository.sendLike(item.id)
+            try {
+                repository.sendLike(item.id)
+            } catch(e: Exception) {
+                repository.sendLike(item.id)
+            }
         }
     }
 }

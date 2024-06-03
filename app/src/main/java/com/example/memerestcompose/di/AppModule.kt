@@ -1,8 +1,8 @@
 package com.example.memerestcompose.di
 
 import com.example.memerestcompose.data.HeaderInterceptor
-import com.example.memerestcompose.data.network.PictureService
 import com.example.memerestcompose.data.PreferenceStorage
+import com.example.memerestcompose.data.network.PictureService
 import com.example.memerestcompose.data.network.UserService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -32,28 +32,21 @@ object AppModule {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         addInterceptor(loggingInterceptor)
-    }
-        .connectTimeout(2000L, TimeUnit.MILLISECONDS)
-        .readTimeout(2000L, TimeUnit.MILLISECONDS)
-        .writeTimeout(2000L, TimeUnit.MILLISECONDS)
-        .build()
+    }.connectTimeout(20000L, TimeUnit.MILLISECONDS).readTimeout(20000L, TimeUnit.MILLISECONDS)
+        .writeTimeout(20000L, TimeUnit.MILLISECONDS).build()
 
     @Provides
     @Singleton
     fun provideRetrofit(
         httpClient: OkHttpClient,
         gson: Gson,
-    ): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_ENDPOINT)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .client(httpClient)
-        .build()
+    ): Retrofit = Retrofit.Builder().baseUrl(BASE_ENDPOINT)
+        .addConverterFactory(GsonConverterFactory.create(gson)).client(httpClient).build()
 
     @Provides
     @Singleton
     fun provideGson(): Gson {
-        return GsonBuilder()
-            .create()
+        return GsonBuilder().create()
     }
 
     @Provides

@@ -1,8 +1,7 @@
 package com.example.memerestcompose.data.repository
 
-import com.example.memerestcompose.data.model.DataResult
-import com.example.memerestcompose.data.network.PictureService
 import com.example.memerestcompose.data.PreferenceStorage
+import com.example.memerestcompose.data.model.DataResult
 import com.example.memerestcompose.data.model.RequestLoginModel
 import com.example.memerestcompose.data.network.UserService
 import retrofit2.HttpException
@@ -10,8 +9,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
-    private val preferenceStorage: PreferenceStorage,
-    private val service: UserService
+    private val preferenceStorage: PreferenceStorage, private val service: UserService
 ) {
     suspend fun login(email: String, password: String): DataResult<Unit> {
         return try {
@@ -27,6 +25,7 @@ class UserRepository @Inject constructor(
                     val errorResponse = throwable.message()
                     DataResult.GenericError(code, errorResponse)
                 }
+
                 else -> {
                     DataResult.GenericError(500, "Strange error")
                 }

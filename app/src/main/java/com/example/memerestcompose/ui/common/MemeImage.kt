@@ -1,5 +1,7 @@
 package com.example.memerestcompose.ui.common
 
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,7 +22,7 @@ fun MemeImage(
             ).build(),
         modifier = modifier,
         loading = {
-            CircularProgressIndicator()
+            CircularProgressIndicator(Modifier.fillMaxHeight())
         },
         contentScale = ContentScale.FillWidth,
         contentDescription = contentDescription,

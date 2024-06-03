@@ -3,7 +3,6 @@ package com.example.memerestcompose.ui.feed
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -25,7 +24,7 @@ import com.example.memerestcompose.ui.common.ErrorScreen
 import com.example.memerestcompose.ui.common.ListImages
 
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(feedViewModel: FeedViewModel) {
     val list = feedViewModel.memeList.collectAsLazyPagingItems()

@@ -23,7 +23,7 @@ class FeedPagingSource @Inject constructor(
             LoadResult.Page(
                 data = list,
                 prevKey = if (currentPage == 0) null else currentPage - 1,
-                nextKey = if (currentPage > 5) null else currentPage + 1
+                nextKey = if (currentPage > 1000) null else currentPage + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

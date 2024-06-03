@@ -1,7 +1,8 @@
 package com.example.memerestcompose.data
-import javax.inject.Singleton
+
 import okhttp3.Interceptor
 import okhttp3.Response
+import javax.inject.Singleton
 
 @Singleton
 class HeaderInterceptor(private val preferenceStorage: PreferenceStorage) : Interceptor {
@@ -20,9 +21,7 @@ class HeaderInterceptor(private val preferenceStorage: PreferenceStorage) : Inte
             original.newBuilder().header(HEADER_AUTHORIZATION, "$TOKEN_TYPE $token")
         } else {
             original.newBuilder()
-        }
-            .method(original.method, original.body)
-            .build()
+        }.method(original.method, original.body).build()
 
         return chain.proceed(request)
     }

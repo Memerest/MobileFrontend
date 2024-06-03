@@ -20,7 +20,11 @@ import com.example.memerestcompose.ui.models.CollectionUIModel
 import com.example.memerestcompose.ui.theme.MemerestComposeTheme
 
 @Composable
-fun CollectionItem(item: CollectionUIModel, onClick: (CollectionUIModel) -> Unit = {}, isImageVisible: Boolean = true) {
+fun CollectionItem(
+    item: CollectionUIModel,
+    onClick: (CollectionUIModel) -> Unit = {},
+    isImageVisible: Boolean = true
+) {
     OutlinedCard(
         modifier = Modifier
             .clip(MaterialTheme.shapes.medium)

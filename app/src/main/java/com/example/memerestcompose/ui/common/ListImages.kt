@@ -2,8 +2,6 @@ package com.example.memerestcompose.ui.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.runtime.Composable
@@ -28,7 +26,8 @@ fun ListImages(
 ) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(2),
-        modifier, contentPadding = PaddingValues(8.dp),
+        modifier,
+        contentPadding = PaddingValues(8.dp),
         verticalItemSpacing = 8.dp,
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -50,31 +49,40 @@ fun ListImages(
 fun ListImagesPreview() {
     MemerestComposeTheme {
         val list = listOf(
-            MemeListUiModel(1,
+            MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ), MemeListUiModel(1,
+            ), MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
             )

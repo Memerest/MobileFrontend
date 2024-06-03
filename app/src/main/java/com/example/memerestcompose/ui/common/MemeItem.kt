@@ -81,9 +81,7 @@ fun MemeItemPreview() {
                 1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
-            ),
-            isCollectionButtonVisible = false,
-            isLikeButtonVisible = false
+            ), isCollectionButtonVisible = true, isLikeButtonVisible = true
         )
     }
 }

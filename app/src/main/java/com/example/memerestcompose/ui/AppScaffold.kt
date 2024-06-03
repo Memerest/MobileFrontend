@@ -47,8 +47,7 @@ fun AppScaffold() {
                 FeedScreen(feedViewModel)
             }
             composable(
-                "collections/{collectionId}",
-                arguments = listOf(navArgument("collectionId") {
+                "collections/{collectionId}", arguments = listOf(navArgument("collectionId") {
                     type = NavType.StringType
                 })
             ) {

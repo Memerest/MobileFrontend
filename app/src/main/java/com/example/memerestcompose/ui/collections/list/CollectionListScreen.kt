@@ -31,11 +31,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.memerestcompose.ui.UiState
-import com.example.memerestcompose.ui.collections.add.AddToCollectionDialog
 import com.example.memerestcompose.ui.collections.create.CreateCollectionDialog
 import com.example.memerestcompose.ui.common.CollectionItem
 import com.example.memerestcompose.ui.common.ErrorScreen
@@ -87,10 +85,7 @@ fun CollectionListScreen(
                 }
                 if (showBottomSheet) {
                     CreateCollectionDialog(
-                        collectionListViewModel,
-                        { showBottomSheet = false },
-                        scope,
-                        sheetState
+                        collectionListViewModel, { showBottomSheet = false }, scope, sheetState
                     )
                 }
                 FloatingActionButton(

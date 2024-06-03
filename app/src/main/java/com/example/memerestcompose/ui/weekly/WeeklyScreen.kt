@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,7 +50,10 @@ fun WeeklyScreen(feedViewModel: WeeklyFeedViewModel) {
         )
         when (val tmp = loginState) {
             is UiState.Failure -> ErrorScreen(tmp.e) { feedViewModel.fetchWeeklyFeed() }
-            is UiState.Idle -> {  feedViewModel.fetchWeeklyFeed()}
+            is UiState.Idle -> {
+                feedViewModel.fetchWeeklyFeed()
+            }
+
             is UiState.Loading -> Box(modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator(
                     modifier = Modifier
@@ -60,18 +63,21 @@ fun WeeklyScreen(feedViewModel: WeeklyFeedViewModel) {
                         ),
                 )
             }
-            is UiState.Success -> {LazyColumn(
-                contentPadding = PaddingValues(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                items(tmp.data) {
-                    MemeItem(
-                        item = it,
-                        onLikeClick = {feedViewModel.pressLike(it)},
-                        isCollectionButtonVisible = true,
-                    )
+
+            is UiState.Success -> {
+                LazyColumn(
+                    contentPadding = PaddingValues(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    items(tmp.data) {
+                        MemeItem(
+                            item = it,
+                            onLikeClick = { feedViewModel.pressLike(it) },
+                            onCollectionClick = { showBottomSheet = true},
+                            isCollectionButtonVisible = true,
+                        )
+                    }
                 }
-            }
                 if (showBottomSheet) {
                     AddToCollectionDialog(
                         hiltViewModel(),
@@ -82,6 +88,7 @@ fun WeeklyScreen(feedViewModel: WeeklyFeedViewModel) {
                     )
                 }
             }
+
             null -> {}
         }
     }

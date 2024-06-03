@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.memerestcompose.data.repository.CollectionRepository
 import com.example.memerestcompose.data.model.DataResult
+import com.example.memerestcompose.data.repository.CollectionRepository
 import com.example.memerestcompose.ui.UiState
 import com.example.memerestcompose.ui.models.CollectionUIModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,18 +33,15 @@ class CollectionListViewModel @Inject constructor(private val feedRepository: Co
                 is DataResult.Success -> _uiState.value = UiState.Success(collections.data.map {
                     if (it.pictures.isEmpty()) {
                         CollectionUIModel(
-                            it.collectionId,
-                            it.name,
-                            ""
+                            it.collectionId, it.name, ""
                         )
                     } else {
                         CollectionUIModel(
-                            it.collectionId,
-                            it.name,
-                            it.pictures[0].pictureUrl
+                            it.collectionId, it.name, it.pictures[0].pictureUrl
                         )
                     }
                 })
+
                 is DataResult.NetworkError -> _uiState.value = UiState.Failure("Network error!")
             }
         }
@@ -68,7 +65,9 @@ class CollectionListViewModel @Inject constructor(private val feedRepository: Co
                     _uiStateCreate.value = UiState.Success(Unit)
                     fetchCollections()
                 }
-                is DataResult.NetworkError -> _uiStateCreate.value = UiState.Failure("Network error!")
+
+                is DataResult.NetworkError -> _uiStateCreate.value =
+                    UiState.Failure("Network error!")
             }
         }
     }
