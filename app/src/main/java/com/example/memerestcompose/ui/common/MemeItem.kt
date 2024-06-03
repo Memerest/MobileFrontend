@@ -1,6 +1,5 @@
 package com.example.memerestcompose.ui.common
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,38 +29,37 @@ fun MemeItem(
     item: MemeListUiModel,
     onLikeClick: (MemeListUiModel) -> Unit = {},
     onCollectionClick: (MemeListUiModel) -> Unit = {},
-    isCollectionButtonVisible: Boolean = false
+    isCollectionButtonVisible: Boolean = false,
+    isLikeButtonVisible: Boolean = true
 ) {
     var isLiked by rememberSaveable { mutableStateOf(item.isLiked) }
     var isAdded by rememberSaveable { mutableStateOf(false) }
     Card(
-        modifier = modifier
-            .clip(MaterialTheme.shapes.medium),
+        modifier = modifier.clip(MaterialTheme.shapes.medium),
         shape = MaterialTheme.shapes.medium,
     ) {
         MemeImage(
             url = item.previewUrl, modifier = Modifier.fillMaxWidth()
         )
         Row {
-            IconToggleButton(checked = isLiked,
-                onCheckedChange = {
+            if (isLikeButtonVisible) {
+                IconToggleButton(checked = isLiked, onCheckedChange = {
                     onLikeClick(item)
                     isLiked = !isLiked
                 }) {
-                if (!isLiked) {
-                    Icon(Icons.Outlined.FavoriteBorder, contentDescription = "Like")
-                } else {
-                    Icon(Icons.Filled.Favorite, contentDescription = "Like")
+                    if (!isLiked) {
+                        Icon(Icons.Outlined.FavoriteBorder, contentDescription = "Like")
+                    } else {
+                        Icon(Icons.Filled.Favorite, contentDescription = "Like")
+                    }
                 }
             }
             Spacer(modifier = Modifier.weight(1f))
             if (isCollectionButtonVisible) {
-                IconToggleButton(
-                    checked = isAdded,
-                    onCheckedChange = {
-                        onCollectionClick(item)
-                        isAdded = !isAdded
-                    }) {
+                IconToggleButton(checked = isAdded, onCheckedChange = {
+                    onCollectionClick(item)
+                    isAdded = !isAdded
+                }) {
                     if (!isAdded) {
                         Icon(Icons.Outlined.AddCircle, contentDescription = "Add")
                     } else {
@@ -79,11 +77,13 @@ fun MemeItem(
 fun MemeItemPreview() {
     MemerestComposeTheme {
         MemeItem(
-            item = MemeListUiModel(1,
+            item = MemeListUiModel(
+                1,
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
                 false
             ),
-            isCollectionButtonVisible = true
+            isCollectionButtonVisible = false,
+            isLikeButtonVisible = false
         )
     }
 }

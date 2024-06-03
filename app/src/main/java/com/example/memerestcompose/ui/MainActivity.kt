@@ -1,4 +1,4 @@
-package com.example.memerestcompose
+package com.example.memerestcompose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.memerestcompose.ui.AppScaffold
 import com.example.memerestcompose.ui.login.LoginScreen
 import com.example.memerestcompose.ui.login.RegisterScreen
 import com.example.memerestcompose.ui.login.UserViewModel

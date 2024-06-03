@@ -1,11 +1,14 @@
 package com.example.memerestcompose.ui.common
 
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.example.memerestcompose.R
 
@@ -15,13 +18,17 @@ fun MemeImage(
     modifier: Modifier = Modifier,
     contentDescription: String? = "Meme"
 ) {
-    AsyncImage(
-        model = ImageRequest.Builder(context = LocalContext.current)
+    SubcomposeAsyncImage(
+        model = ImageRequest.Builder(context = LocalContext.current.applicationContext)
             .data(url)
+            .crossfade(true).memoryCachePolicy(
+                CachePolicy.ENABLED)
             .build(),
         modifier = modifier,
+        loading = {
+            CircularProgressIndicator()
+        },
         contentScale = ContentScale.FillWidth,
         contentDescription = contentDescription,
-        placeholder = painterResource(R.drawable.ic_launcher_background)
     )
 }

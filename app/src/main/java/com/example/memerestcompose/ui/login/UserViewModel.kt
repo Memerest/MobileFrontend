@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.memerestcompose.data.model.DataResult
-import com.example.memerestcompose.data.UserRepository
+import com.example.memerestcompose.data.repository.UserRepository
 import com.example.memerestcompose.ui.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

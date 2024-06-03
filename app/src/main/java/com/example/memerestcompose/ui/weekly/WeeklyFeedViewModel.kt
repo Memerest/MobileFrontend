@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.memerestcompose.data.FeedRepository
+import com.example.memerestcompose.data.repository.FeedRepository
 import com.example.memerestcompose.data.model.DataResult
 import com.example.memerestcompose.ui.UiState
 import com.example.memerestcompose.ui.models.MemeListUiModel
@@ -18,12 +18,12 @@ class WeeklyFeedViewModel @Inject constructor(private val repository: FeedReposi
     private val _uiState = MutableLiveData<UiState<List<MemeListUiModel>>>(UiState.Idle())
     val uiState: LiveData<UiState<List<MemeListUiModel>>> = _uiState
 
-    fun fetchCollections() {
+    fun fetchWeeklyFeed() {
         _uiState.value = UiState.Loading()
         viewModelScope.launch {
-            when (val loginData = repository.fetchWeekly()) {
-                is DataResult.GenericError -> _uiState.value = UiState.Failure(loginData.error)
-                is DataResult.Success -> _uiState.value = UiState.Success(loginData.data.map {
+            when (val feed = repository.fetchWeekly()) {
+                is DataResult.GenericError -> _uiState.value = UiState.Failure(feed.error)
+                is DataResult.Success -> _uiState.value = UiState.Success(feed.data.map {
                     MemeListUiModel(
                         it.pictureId,
                         it.pictureUrl,
@@ -32,6 +32,12 @@ class WeeklyFeedViewModel @Inject constructor(private val repository: FeedReposi
                 })
                 is DataResult.NetworkError -> _uiState.value = UiState.Failure("Network error!")
             }
+        }
+    }
+
+    fun pressLike(item: MemeListUiModel) {
+        viewModelScope.launch {
+            repository.sendLike(item.id)
         }
     }
 }

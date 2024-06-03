@@ -1,8 +1,9 @@
 package com.example.memerestcompose.di
 
 import com.example.memerestcompose.data.HeaderInterceptor
-import com.example.memerestcompose.data.NetworkService
+import com.example.memerestcompose.data.network.PictureService
 import com.example.memerestcompose.data.PreferenceStorage
+import com.example.memerestcompose.data.network.UserService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -22,7 +23,6 @@ object AppModule {
     private const val BASE_ENDPOINT = "http://31.128.39.67/"
     private const val BASE_ENDPOINT_TEST = "http://localhost:8000/"
 
-
     @Provides
     @Singleton
     fun provideOkHttp(
@@ -33,9 +33,9 @@ object AppModule {
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         addInterceptor(loggingInterceptor)
     }
-        .connectTimeout(20000L, TimeUnit.MILLISECONDS)
-        .readTimeout(20000L, TimeUnit.MILLISECONDS)
-        .writeTimeout(20000L, TimeUnit.MILLISECONDS)
+        .connectTimeout(2000L, TimeUnit.MILLISECONDS)
+        .readTimeout(2000L, TimeUnit.MILLISECONDS)
+        .writeTimeout(2000L, TimeUnit.MILLISECONDS)
         .build()
 
     @Provides
@@ -58,9 +58,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApiService(
+    fun providePictureService(
         retrofit: Retrofit,
-    ): NetworkService {
-        return retrofit.create(NetworkService::class.java)
+    ): PictureService {
+        return retrofit.create(PictureService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserService(
+        retrofit: Retrofit,
+    ): UserService {
+        return retrofit.create(UserService::class.java)
     }
 }

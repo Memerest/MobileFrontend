@@ -20,7 +20,7 @@ import com.example.memerestcompose.ui.models.CollectionUIModel
 import com.example.memerestcompose.ui.theme.MemerestComposeTheme
 
 @Composable
-fun CollectionItem(item: CollectionUIModel, onClick: (CollectionUIModel) -> Unit = {}) {
+fun CollectionItem(item: CollectionUIModel, onClick: (CollectionUIModel) -> Unit = {}, isImageVisible: Boolean = true) {
     OutlinedCard(
         modifier = Modifier
             .clip(MaterialTheme.shapes.medium)
@@ -29,7 +29,9 @@ fun CollectionItem(item: CollectionUIModel, onClick: (CollectionUIModel) -> Unit
         shape = MaterialTheme.shapes.medium,
     ) {
         Row {
-            MemeImage(url = item.previewUrl)
+            if (isImageVisible) {
+                MemeImage(url = item.previewUrl)
+            }
             Spacer(modifier = Modifier.padding(10.dp))
             Text(
                 text = item.name,
